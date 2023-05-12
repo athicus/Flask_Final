@@ -10,44 +10,44 @@ Bootstrap(app)
 def home():
    return render_template('home.htm')
 
-@app.route('/register')
+@app.route('/makeapp')
 def new_student():
-   return render_template('register.htm')
+   return render_template('makeapp.htm')
 
 
 @app.route('/addrec',methods = ['POST', 'GET'])
 def addrec():
    if request.method == 'POST':
       try:
-         id = request.form['id']
-         nm = request.form['nm']
-         gen = request.form['gen']
-         phn = request.form['phn']
-         bd = request.form['bd']
+         lc = request.form['lc']
+         cn = request.form['cn']
+         ct = request.form['ct']
+         cp = request.form['cp']
+         ad = request.form['ad']
          
          with sql.connect(host="localhost", user="flask", password="ubuntu", database="flask_db") as con:
             cur = con.cursor()
-            cmd = "INSERT INTO employees (EmpId, EmpName, EmpGender, EmpPhone, EmpBdate) VALUES ('{0}','{1}','{2}','{3}','{4}')".format(id,nm,gen,phn,bd)
+            cmd = "INSERT INTO employees (LicPlate, CusName, CarType, CusPhone, AppDate) VALUES ('{0}','{1}','{2}','{3}','{4}')".format(lc,cn,ct,cp,ad)
             cur.execute(cmd)
             
             con.commit()
-            msg = "Record successfully added"
+            msg = "Appointment made successfully"
       except:
          con.rollback()
-         msg = "error in insert operation"
+         msg = "Apointment failed"
          
       finally:
-         return render_template("output.htm",msg = msg)
+         return render_template("result.htm",msg = msg)
          con.close()
 
-@app.route('/info')
+@app.route('/listapps')
 def info():
    with sql.connect(host="localhost", user="flask", password="ubuntu", database="flask_db") as conn:  
       cur = conn.cursor()
-      cur.execute("select * from employees")
+      cur.execute("select * from appointments")
       rows = cur.fetchall()
 
-   return render_template("info.htm",rows = rows)
+   return render_template("listapps.htm",rows = rows)
 
 if __name__ == '__main__':
    app.run(debug = True)
