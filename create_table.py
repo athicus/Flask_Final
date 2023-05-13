@@ -6,6 +6,6 @@ cmd = "CREATE TABLE appointments (\
 	CusName	VARCHAR(30) NOT	NULL, \
 	CarType VARCHAR(15), \
 	CusPhone VARCHAR(15), \
-	AppDate DATE)"
+	AppDate VARCHAR(15))"
 cur.execute(cmd)
 conn.close()
