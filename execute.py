@@ -19,6 +19,7 @@ def new_student():
 def addrec():
    msg = "test"
    #if request.method == 'POST':
+   if 1 == 1:
       try:
          lc = request.form['lc']
          cn = request.form['cn']
