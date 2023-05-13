@@ -18,8 +18,7 @@ def new_student():
 @app.route('/addrec',methods = ['POST', 'GET'])
 def addrec():
    msg = "test"
-   #if request.method == 'POST':
-   if 1 == 1:
+   if request.method == 'POST':
       try:
          lc = request.form['lc']
          cn = request.form['cn']
