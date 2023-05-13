@@ -29,6 +29,7 @@ def addrec():
          ad = request.form['ad']
          
          with sql.connect(host="localhost", user="flask", password="ubuntu", database="flask_db") as con:
+            msg = "test4"
             cur = con.cursor()
             cmd = "INSERT INTO appointments (LicPlate, CusName, CarType, CusPhone, AppDate) VALUES ('{0}','{1}','{2}','{3}','{4}')".format(lc,cn,ct,cp,ad)
             cur.execute(cmd)
